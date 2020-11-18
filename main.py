@@ -1,15 +1,16 @@
 import sys
 from random import randrange
+from UI import Ui_Form
 from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton
 from PyQt5.QtWidgets import QInputDialog
 
 
-class Example(QWidget):
+class Example(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.initUI()
 
     def initUI(self):
@@ -29,7 +30,7 @@ class Example(QWidget):
             qp.end()
 
     def draw_circle(self, qp):
-        qp.setPen(QColor(255, 0, 0))
+        qp.setBrush(QColor(randrange(0, 256), randrange(0, 256), randrange(0, 256)))
         rand = randrange(30, 100)
         qp.drawEllipse(10, 10, rand, rand)
 
